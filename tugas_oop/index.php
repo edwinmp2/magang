@@ -6,9 +6,14 @@
 		public $kain;
 		public $sarung 
 
-		public function sandaran()
+		public function bersandar()
 		{
-			return 'untuk bersandar';
+			return 'bersandar';
+		}
+
+		public function lempar()
+		{
+			return 'lempar';
 		}
 	}
 
@@ -20,7 +25,12 @@
 
 		public function tidur()
 		{
-			return 'untuk tidur';
+			return 'tidur';
+		}
+
+		public function rebahan()
+		{
+			return 'rebahan';
 		}
 	}
 
@@ -34,6 +44,11 @@
 		{
 			return 'untuk tempat laptop';
 		}
+
+		public function Makan()
+		{
+			return 'makan';
+		}
 	}
 
 	class Kursi
@@ -44,7 +59,12 @@
 
 		public function duduk()
 		{
-			return 'untuk duduk';
+			return 'duduk';
+		}
+
+		public function naik()
+		{
+			return 'naik';
 		}
 	}
 
@@ -56,19 +76,29 @@
 
 		public function waktu()
 		{
-			return 'untuk melihat waktu';
+			return 'lihat waktu';
+		}
+
+		public function gantiBaterai()
+		{
+			return 'ganti baterai';
 		}
 	}
 
-	class StopKontact
+	class Jaket
 	{
-		public $kabel;
-		public $baut;
-		public $lempengan;
+		public $saku;
+		public $resleting;
+		public $kerah;
 
-		public function colokanListrik()
+		public function kenakan()
 		{
-			return 'untuk colokan';
+			return 'kenakan';
+		}
+
+		public function lepaskan()
+		{
+			return 'lepaskan';
 		}
 	}
 
@@ -78,9 +108,14 @@
 		public $kunci;
 		public $baut;
 
-		public function buka()
+		public function bukaPintu()
 		{
 			return 'buka';
+		}
+
+		public function tutupPintu()
+		{
+			return 'tutup';
 		}
 	}
 
@@ -94,6 +129,11 @@
 		{
 			return 'buka Jendela';
 		}
+
+		public function tutupJendela()
+		{
+			return 'tutup Jendela';
+		}
 	}
 
 	class Sepatu
@@ -106,6 +146,11 @@
 		{
 			return 'pakai';
 		}
+
+		public function lepas()
+		{
+			return 'lepas';
+		}
 	}
 
 	class Motor
@@ -117,6 +162,11 @@
 		public function naiki()
 		{
 			return 'naiki';
+		}
+
+		public function turun()
+		{
+			return 'turun';
 		}
 	}
 ?>
