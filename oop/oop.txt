@@ -1,0 +1,156 @@
+#Class
+Class digunakan untuk kerangka kerja atau bisa disebut juga library. Class berisi property dan method
+contoh penulisan class :
+class Mobil{
+	
+}
+
+#Property
+Property adalah data-data yang berada di dalam class.
+contoh :
+class Mobil{
+    var $warna;
+    var $merek;
+    var $ukuran;
+}
+
+#Method
+Method adalah sebuah aksi atau fungsi yang terdapat di dalam class
+
+contoh :
+class Mobil{
+    var $warna;
+    var $merek;
+    var $ukuran;
+
+    public function getMobil()
+    {
+    	//isi method
+    }
+}
+
+#Method construct
+Method construct adalah method yang di jalankan pertama kali saat sebuah class dijalankan. Jadi tidak perlu dipanggil
+kembali ketika inisialisasi class.
+contoh :
+class nama_class{
+ 
+    function __construct(){
+        //isi fungsi construct
+    }
+}
+
+#Method destruct
+Method destruct adalah kebalikan dari method destruct. Method ini dijalankan setelah semua method selesai dijalankan.
+Bisa dibilang di jalankan di akhir.
+contoh :
+class nama_class{
+ 
+    function __destruct(){
+        //isi fungsi destruct
+    }
+}
+
+#Enkapsulasi
+Enkapsulasi adalah sebuah metode untuk mengatur struktur class dengan cara menyembunyikan alur kerja dari class tersebut. Dengan enkapsulasi, kita bisa membuat pembatasan akses kepada property dan method, sehingga hanya property dan method tertentu saja yang bisa diakses dari luar class.
+
+Pengertian Hak Akses: Public
+
+Ketika sebuah property atau method dinyatakan sebagai public, maka seluruh kode program di luar class bisa mengaksesnya, termasuk class turunan.
+
+Pengertian Hak Akses: Protected
+
+Jika sebuah property atau method dinyatakan sebagai protected, berarti property atau method tersebut tidak bisa diakses dari luar class, namun bisa diakses oleh class itu sendiri atau turunan class tersebut.
+contoh :
+class laptop
+{
+    protected function hidupkan_laptop() {
+      return "Hidupkan Laptop";
+    }
+    public function paksa_hidup() {
+      return $this->hidupkan_laptop();
+    }
+}
+
+Pengertian Hak Akses: Private
+
+Hak akses terakhir dalam konsep enkapsulasi adalah private. Jika sebuah property atau method di-set sebagai private, maka satu-satunya yang bisa mengakses adalah class itu sendiri. Class lain tidak bisa mengaksesnya, termasuk class turunan.
+contoh :
+<?php
+	// buat class komputer
+	class komputer {
+	   
+	   // property dengan hak akses protected
+	   private $jenis_processor = "Intel Core i7-4790 3.6Ghz";
+	   
+	   public function tampilkan_processor() {
+	     return $this->jenis_processor;
+	   }
+	}
+	  
+	// buat class laptop
+	class laptop extends komputer{
+	  
+	   public function tampilkan_processor() {
+	     return $this->jenis_processor;
+	   }
+	}
+	  
+	// buat objek dari class laptop (instansiasi)
+	$komputer_baru = new komputer();
+	$laptop_baru = new laptop();
+	  
+	// jalankan method dari class komputer
+	echo $komputer_baru->tampilkan_processor(); // "Intel Core i7-4790 3.6Ghz"
+	  
+	// jalankan method dari class laptop (error)
+	echo $laptop_baru->tampilkan_processor();
+	// Notice: Undefined property: laptop::$jenis_processor
+?>
+
+#Inheritance
+Inheritance atau Pewarisan/Penurunan adalah konsep pemrograman dimana sebuah class dapat ‘menurunkan’ property dan method yang dimilikinya kepada class lain. Konsep inheritance digunakan untuk memanfaatkan fitur ‘code reuse’ untuk menghindari duplikasi kode program.
+
+Konsep inheritance membuat sebuah struktur atau ‘hierarchy’ class dalam kode program. Class yang akan ‘diturunkan’ bisa disebut sebagai class induk (parent class), super class, atau base class. Sedangkan class yang ‘menerima penurunan’ bisa disebut sebagai class anak (child class), sub class, derived class atauheir class.
+
+Tidak semua property dan method dari class induk akan diturunkan. Property dan method dengan hak akses private, tidak akan diturunkan kepada class anak. Hanya property dan method dengan hak akses protected dan public saja yang bisa diakses dari class anak.
+
+#Scope Resolution Operator PHP
+Scope Resolution Operator adalah operator khusus di dalam PHP yang memungkinkan kita untuk mengakses ‘informasi khusus‘ dari dalam class.
+
+Informasi khusus ini terdiri dari: overridden property atau overridden method, static property atau static method, serta constanta class. Untuk saat ini, kita akan fokus kepada overridden property atau overridden method. Mengenai static property, static method, dan konstanta class akan kita bahas dalam tutorial lainnya.
+
+Scope Resolution Operator ditulis dengan tanda dua kali titik dua (double colon), yakni “::”. Untuk mengakses property dan method dari class induk, kita mengaksesnya dengan perintah:
+parent::nama_property;
+parent::nama_method();
+
+Di dalam PHP, ketika child class memiliki constructor dan destructor sendiri, maka PHP akan melewatkan constructor dan destructor parent class, kasus ini disebut dengan Overridden Constructor dan Overridden Destructor. Constructor dan destructor parent class akan dijalankan jika child class tidak mendefenisikan constructor dan destructor sendiri. Namun jika child class juga memiliki constructor dan desctructor, maka kita harus memanggil constructor dan destructor parent class secara manual dengan Scope Resolution Operator, yakni: parent::__construct() dan parent::__desctruct().
+
+#Static Property dan Static Method
+Static property dan static method adalah property (variabel) dan method (function) yang melekat kepada class, bukan kepada objek. Konsep static property memang ‘agak keluar’ dari konsep objek sebagai tempat melakukan proses, karena sebenarnya class hanya merupakan ‘blueprint’ saja. Untuk membuat static property dan static method, kita menambahkan keyword ‘static’ setelah penulisan akses level property atau method. Karena static property dan static method adalah milik class, maka kita tidak perlu membuat objek untuk mengaksesnya, tapi langsung menyebutkan nama class dan menggunakan operator ‘::’. Jika kita menggunakan variabel $this untuk mengakses property dan method ‘normal’ dari dalam class, maka untuk mengakses static property dan static method, kita menggunakan keyword “self::”. Untuk class dengan penurunan (inheritance), kita bisa menggunakan keyword parent::nama_property dan parent::nama_method untuk mengakses static property dan static method dari parent class.
+Contoh:
+echo laptop::$harga_beli;
+echo laptop::beli_laptop();
+
+#Konstanta Class dalam Pemrograman Objek
+Konstanta Class atau class constant adalah konstanta yang berada di dalam class. Selain memiliki property dan method, PHP juga membolehkan kita menggunakan konstanta (constant) di dalam class. Sebagaimana sifat konstanta reguler, class constant juga tidak bisa diubah nilainya ketika sudah didefenisikan. Untuk membuat class constant di dalam PHP, kita menggunakan perintah: const.
+contoh :
+class nama_class {
+   const NAMA_KONSTANTA = nilai_konstanta;
+}
+cara mengaksesnya menggunakan class::const
+Untuk mengakses class constant dari dalam class itu sendiri self::const
+
+#final method dan final class
+Dengan menambahkan keyword final kepada sebuah method, maka method tersebut tidak dapat didefenisikan ulang di dalam child class. Dan jika sebuah class ditambahkan keyword final, maka class tersebut tidak bisa diturunkan sama sekali. Inilah pengertian dari final method dan final class.
+contoh :
+
+final public function nama_method(){
+   //... isi method
+}
+final class nama_class {
+   //... isi class
+}
+
+
+
