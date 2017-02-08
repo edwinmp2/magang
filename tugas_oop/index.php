@@ -4,7 +4,7 @@
 		
 		public $kapuk;
 		public $kain;
-		public $sarung 
+		public $sarung;
 
 		public function bersandar()
 		{
